@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Blog World || Home 
+{% endblock title %}
+{% block css %}
+    <link rel="stylesheet" href="{% static '/css/index.css' %}">
+{% endblock css %}
+
+
+{% block category %}
+<p>Categories</p>
+{% for category in categories %}
+   <a href=""><button class="Catagory" value="web dev">{{category}}</button></a> 
+{% endfor %}
+
+
+
+
+
+{% endblock category %}
+
+
+{% block content %}
+   <div class="contDiv">
+    {% for blog in blogs %}
+    <a href="{% url 'blog_detail' blog.id %}">
+        <div class="card">
+            <div class="imgPart">
+                <img src="{{ blog.coverImg.url }}" alt="Image" class="cardImg">
+            </div>
+            <div class="blogDetail">
+                <p class="blogTitle">{{ blog.title }}</p>
+                <p class="blogAuthor">👤 {{ blog.user.username }}</p>
+                <p class="blogCategory">{{ blog.categories }}</p>
+                <a href="{% url 'edit' blog.id %}"><button class="editBtn" type="button">Edit</button></a>
+                <a href="{% url 'delete' blog.id %}"><button class="dltBtn" type="button">Delete</button></a>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+   </div>
+{% endblock content %}
+
+
+
+
+

@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        Blog World
+        {% endblock title %}
+    </title>
+    {% block css %}
+    {% endblock css %}
+    <link rel="stylesheet" href="{% static '/css/base.css' %}">
+</head>
+<body>
+    <div class="fullbody">
+        <div class="nav">
+            <div class="topPart">
+                <img src="{% static 'img/logo.png' %}"  alt="no img to show" srcset="" class="logoImg">
+                <div class="accInfo">
+                    <img src="{% static 'img/logo.png' %}" alt="" srcset="" class="accLogo">
+
+                   {% if user.is_authenticated %}
+                   <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class ="registerBtn">Logout</button>
+                    </form>
+                    {% else %}
+                        <a href="{% url 'login' %}"><button class ="loginBtn">Login</button></a>
+                        <a href="{% url 'register' %}"><Button class ="registerBtn">Register</Button></a>
+                    {% endif %}
+
+                </div>
+            </div>
+            <div class="bottomPart">
+                <input type="text" placeholder="Enter your Keyword" class="searchBar"  >
+                <button class="searchButton" type="button">Search</button>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="sideBar">
+                <div class="catagorySection">
+                    {% block category %}
+                    
+                    
+                    {% endblock category %}
+
+                    
+                </div>
+                <div class="PageSection">
+                    <button class="page">Home</button>
+                    <a href="{%url 'create'%}"><button class="page">create Blog</button></a>
+                    <button class="page">My profile</button>
+
+
+                </div>
+
+            </div>
+            <div class="mainContaint">
+                {% block content %}
+                {% endblock content %}
+                
+
+            </div>
+        </div>
+
+
+
+        <div class="footer">
+            <div class="top">
+                <h2>Blog World</h2>
+                <p>blog world is a blog website where you can publish your blog and view others blogs. This site is made with django.</p>
+            </div>
+            <div class="bottom">
+                <p>© Saptarshi Ghosh || All right reserved</p>
+            </div>
+        </div>
+    </div>
+ 
+    
+                    
+</body>
+</html>

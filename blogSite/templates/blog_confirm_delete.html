@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog World </title>
+    <link rel="stylesheet" href="{% static '/css/blog_form.css' %}">
+</head>
+<body>
+    <div class='body'>
+        <h1>Are you sure that you want to delete this blog ?</h1>
+        <form  method="POST">
+            {% csrf_token %}
+            <button class='delBtn' type="submit">Delete</button>
+            <a href="{% url 'home'%}"><button class='backBtn' type="button">Cancel</button></a>
+        </form>
+    </div>
+    
+</body>
+</html>

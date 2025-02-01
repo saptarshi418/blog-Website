@@ -1,0 +1,36 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog World || Login</title>
+    <link rel="stylesheet" href="{% static "css/login.css" %}"> 
+</head>
+<body>
+
+    {% if messages %}
+    <div class = 'massageBox'>
+     <ul>
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+     </ul>
+    </div>
+    {% endif %}
+
+
+    <div class="container">
+        <h2>Login</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+    
+            {{form.as_p}}
+            <button type="submit">LogIn</button>
+    
+        </form>
+    </div>
+
+</body>
+</html>

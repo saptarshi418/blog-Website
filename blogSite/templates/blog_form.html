@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Blog World || Create Blog
+{% endblock title %}
+{% block css %}
+    <link rel="stylesheet" href="{% static '/css/blog_form.css' %}">
+
+
+    <script>
+        (function loadTinyMCE() {
+            var script = document.createElement("script");
+            script.src = "https://cdn.jsdelivr.net/npm/tinymce/tinymce.min.js";
+            script.onload = function() {
+                //console.log("TinyMCE Script Loaded!");
+                initializeTinyMCE();
+            };
+            document.head.appendChild(script);
+        })();
+      
+        function initializeTinyMCE() {
+            if (typeof tinymce !== "undefined") {
+                //console.log("Initializing TinyMCE...");
+                tinymce.init({
+                    selector: "textarea",
+                    license_key: 'gpl',
+
+                    plugins: 'advlist autolink lists link image charmap print preview anchor ',
+                    toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | code',
+                    height: 400,
+                    width: "85%"
+                });
+            } else {
+                //console.error("TinyMCE is still not defined!");
+            }
+        }
+      </script> 
+     
+      
+{% endblock css %}
+
+
+
+{% block content %}
+<div class="heading">
+
+<h2>{% if form.instance.pk %}
+     Edit Blog 
+     {% else%}
+     Create Blog
+    {% endif %}
+</h2>
+</div>
+
+<div class="details">
+<form  method="post" enctype="multipart/form-data" action="">
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <button type="submit" >Submit</button>
+    <a href="{% url 'home'%}"><button type="button">Back</button></a>
+</form>
+</div>
+{% endblock content %}
+
+{% block script %}
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.9.0/tinymce.min.js"></script>
+
+
+
+{% comment %} <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (typeof tinymce === "undefined") {
+        console.error("TinyMCE failed to load.");
+      } else {
+        console.log("TinyMCE successfully loaded.");
+        tinymce.init({
+          selector: 'textarea',
+          plugins: 'advlist autolink lists link image charmap print preview anchor textcolor',
+          toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | code',
+          height: 400,
+          width: '85%'
+        });
+      }
+    });
+  </script> {% endcomment %}
+
+
+  
+  
+  
+  
+
+
+{% endblock script %}

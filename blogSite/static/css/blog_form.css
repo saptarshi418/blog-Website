@@ -1,0 +1,28 @@
+.heading{
+    height: 100px;
+    width: 100%;
+    /* background-color: aquamarine; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.details{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+}
+.tox-promotion-link{
+    display: none;
+    visibility: hidden;
+}
+.tox-statusbar__branding{
+    display: none;
+    visibility: hidden;
+}
+.tinymce{
+    height: 50vh;
+    width: 60vw;
+    background-color: red;
+}
